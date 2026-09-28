@@ -1,0 +1,39 @@
+name: Daily Samsung Gold Screenshot
+
+on:
+  schedule:
+    # 00:00 UTC = 09:00 KST
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install npm packages
+        run: npm install
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Capture homepage
+        run: npm run capture
+      - name: Commit screenshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add screenshots/
+          if git diff --cached --quiet; then
+            echo 'No new screenshot.'
+          else
+            git commit -m 'chore: daily Samsung Gold screenshot'
+            git push
+          fi
