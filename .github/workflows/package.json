@@ -1,1 +1,0 @@
-{"name":"samsung-gold-capture","version":"1.0.0","private":true,"scripts":{"capture":"node scripts/capture.js"},"dependencies":{"playwright":"^1.55.0"}}
