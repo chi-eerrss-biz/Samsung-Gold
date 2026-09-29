@@ -18,6 +18,10 @@ function kstParts(date = new Date()) {
   const outDir = path.join(process.cwd(), 'screenshots', date.slice(0, 7));
   fs.mkdirSync(outDir, { recursive: true });
   const output = path.join(outDir, `${date}-0900.webp`);
+  if (fs.existsSync(output)) {
+  console.log(`Already captured: ${output}`);
+  process.exit(0);
+}
 
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
