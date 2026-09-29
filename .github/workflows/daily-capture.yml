@@ -2,8 +2,13 @@ name: Daily Samsung Gold Screenshot
 
 on:
   schedule:
-    # 00:00 UTC = 09:00 KST
-    - cron: "0 0 * * *"
+    # 매일 오전 9시 (한국시간)
+    - cron: "0 9 * * *"
+      timezone: "Asia/Seoul"
+
+    # 09:00 예약 실행이 누락될 경우를 위한 백업
+    - cron: "5 9 * * *"
+      timezone: "Asia/Seoul"
 
   # GitHub Actions에서 수동 실행 가능
   workflow_dispatch:
