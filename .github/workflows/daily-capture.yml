@@ -6,10 +6,6 @@ on:
     - cron: "0 9 * * *"
       timezone: "Asia/Seoul"
 
-    # 09:00 예약 실행이 누락될 경우를 위한 백업
-    - cron: "5 9 * * *"
-      timezone: "Asia/Seoul"
-
   # GitHub Actions에서 수동 실행 가능
   workflow_dispatch:
 
