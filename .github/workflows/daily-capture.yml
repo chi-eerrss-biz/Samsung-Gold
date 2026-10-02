@@ -2,7 +2,7 @@ name: Daily Samsung Gold Screenshot
 
 on:
   schedule:
-    # 매일 오전 9시 (한국시간)
+    # 매일 오전 9시 (한국시간, 9로 하니까 12시에 캡쳐함)
     - cron: "0 6 * * *"
       timezone: "Asia/Seoul"
 
